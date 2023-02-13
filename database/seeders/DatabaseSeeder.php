@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use DB;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -20,5 +20,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        DB::table('property_types')->insert([
+            'name'=> "Common Expenses"
+        ]);
+        DB::table('property_types')->insert([
+            'name'=> "Rent"
+        ]);
+        DB::table('property_types')->insert([
+            'name'=> "Owner Properties"
+        ]);
     }
 }
