@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('expense_categories', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("type");
+            $table->unsignedBigInteger("type");
             $table->string("applied_for");
-            $table->string("building_expense");
-            $table->string("non_building_expense");
-            $table->string("active");
+            $table->boolean("building_expense")->default(true);
+            $table->boolean("non_building_expense")->default(true);
+            $table->boolean("active")->default(true);
             $table->timestamps();
+
+            $table->foreign('type')->references('id')->on('property_types');
         });
     }
 
