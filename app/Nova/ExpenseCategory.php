@@ -45,8 +45,9 @@ class ExpenseCategory extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name (English)', 'name')->sortable(),
-            Text::make('Name (Greek)', 'name')->sortable(),
+            //Text::make('Name (English)', 'name')->sortable(),
+            //Text::make('Name (Greek)', 'name')->sortable(),
+            Text::make("Name")->translatable(["en"=> "English", "gk"=>"Greek"])->sortable(),
             BelongsTo::make('Property Type', "PropertyType"),
             Select::make("Applied For", "applied_for")->options([
                 "Owner"=> ["label"=> "Owner", "value"=> 1],

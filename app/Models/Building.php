@@ -28,10 +28,18 @@ class Building extends Model
         "fixed_percentage",
         "active"
     ];
+
+    protected $casts = [
+        "management_start_date"=> "date"
+    ];
     
-    public function Responsible()
+    public function responsible()
     {
-        return $this->belongsTo(User::class, "responsible");
+        return $this->belongsTo(User::class, "responsible", "id");
+    }
+
+    public function getResponsibleAttribute(){
+        return $this->user;
     }
 
     public function PropertyType()
