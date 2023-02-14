@@ -1,23 +1,22 @@
 <?php
 
 namespace App\Nova;
-use App\Nova\PropertyType;
+
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class ExpenseCategory extends Resource
+class BankAccount extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\ExpenseCategory>
+     * @var class-string<\App\Models\BankAccount>
      */
-    public static $model = \App\Models\ExpenseCategory::class;
+    public static $model = \App\Models\BankAccount::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -45,16 +44,12 @@ class ExpenseCategory extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name (English)', 'name')->sortable(),
-            Text::make('Name (Greek)', 'name')->sortable(),
-            BelongsTo::make('Property Type', "PropertyType"),
-            Select::make("Applied For", "applied_for")->options([
-                "Owner"=> ["label"=> "Owner", "value"=> 1],
-                "Tenant"=> ["label"=> "Tenant", "value"=> 2]
-            ])->displayUsingLabels(),
-            Boolean::make("Building Expense", "building_expense")->default(true),
-            Boolean::make("None Building Expense", "non_building_expense")->default(true),
-            Boolean::make("Active", "active")->default(true)
+            Text::make("Name", "name")->sortable(),
+            Text::make("Bank", "bank")->sortable(),
+            Text::make("Account Number", "account_number")->sortable(),
+            Text::make("IBAN", "iban")->sortable(),
+            Text::make("Starting Balance", "starting_balance"),
+            BelongsTo::make('Building', "Building"),
         ];
     }
 

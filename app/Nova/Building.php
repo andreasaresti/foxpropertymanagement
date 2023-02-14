@@ -1,30 +1,31 @@
 <?php
 
 namespace App\Nova;
-use App\Nova\PropertyType;
+
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class ExpenseCategory extends Resource
+class Building extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\ExpenseCategory>
+     * @var class-string<\App\Models\Building>
      */
-    public static $model = \App\Models\ExpenseCategory::class;
+    public static $model = \App\Models\Building::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -45,16 +46,24 @@ class ExpenseCategory extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name (English)', 'name')->sortable(),
-            Text::make('Name (Greek)', 'name')->sortable(),
+            Text::make("Name", "name")->sortable(),
+            Text::make("Code", "code")->sortable(),            
+            Number::make("Construction Year", "construction_year"),
+            Date::make("Management Start Date", "management_start_date"),
+            Text::make("Address", "address"),
+            Text::make("Postal Code", "postal_code"),
+            Text::make("District", "district"),
+            Text::make("Country", "country"),
+            Text::make("City", "city")->default("Cyprus"),
             BelongsTo::make('Property Type', "PropertyType"),
-            Select::make("Applied For", "applied_for")->options([
-                "Owner"=> ["label"=> "Owner", "value"=> 1],
-                "Tenant"=> ["label"=> "Tenant", "value"=> 2]
-            ])->displayUsingLabels(),
-            Boolean::make("Building Expense", "building_expense")->default(true),
-            Boolean::make("None Building Expense", "non_building_expense")->default(true),
-            Boolean::make("Active", "active")->default(true)
+            BelongsTo::make("Responsible User ID", "responsible", \App\Nova\User::class),
+            Boolean::make("Internal Square Metes Payable", "internal_square_metes_payable")->default(true),
+            Boolean::make("Covered Veranda Payable", "covered_veranda_payable")->default(true),
+            Boolean::make("Mezanne Payable", "mazanne_payable")->default(true),
+            Boolean::make("Other Payable", "other_payable")->default(true),
+            Boolean::make("Fixed Percentage", "fixed_percentage")->default(false),
+            Boolean::make("Active", "active"),
+
         ];
     }
 
