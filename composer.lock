@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b06473d7e6dffc387f7aa6a4fec68013",
+    "content-hash": "5fd81b94789148f395851642c3ebd110",
     "packages": [
         {
             "name": "brick/math",
@@ -194,6 +194,51 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.2"
             },
             "time": "2022-10-27T11:44:00+00:00"
+        },
+        {
+            "name": "digitalcloud/nova-custom-views",
+            "version": "v1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DigitalCloud/nova-custom-views.git",
+                "reference": "79f96725240ba9c7cc7dab3c06d72e276132bbc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DigitalCloud/nova-custom-views/zipball/79f96725240ba9c7cc7dab3c06d72e276132bbc5",
+                "reference": "79f96725240ba9c7cc7dab3c06d72e276132bbc5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "devmtm\\NovaCustomViews\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Motaz Marouf",
+                    "email": "dev.mmarouf@hotmail.com"
+                }
+            ],
+            "description": "A Laravel Nova custom views.",
+            "keywords": [
+                "custom views",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/DigitalCloud/nova-custom-views/issues",
+                "source": "https://github.com/DigitalCloud/nova-custom-views/tree/master"
+            },
+            "time": "2018-11-12T11:42:34+00:00"
         },
         {
             "name": "doctrine/cache",

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ExpenseCategory extends Model
 {
     use HasFactory;
+
+    public function PropertyType()
+    {
+        return $this->belongsTo(PropertyType::class, "type");
+    }
 }
