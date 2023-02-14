@@ -45,16 +45,16 @@ class ExpenseCategory extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Expense Category (English)')->sortable(),
-            Text::make('Expense Category (Greek)')->sortable(),
-            BelongsTo::make('PropertyType'),
-            Select::make("Applied For")->options([
+            Text::make('Expense Category (English)', 'name')->sortable(),
+            //Text::make('Expense Category (Greek)')->sortable(),
+            BelongsTo::make('Property Type', "PropertyType"),
+            Select::make("Applied For", "applied_for")->options([
                 "Owner"=> ["label"=> "Owner", "value"=> 1],
                 "Tenant"=> ["label"=> "Tenant", "value"=> 2]
             ])->displayUsingLabels(),
-            Boolean::make("Building Expense")->default(true),
-            Boolean::make("None Building Expense")->default(true),
-            Boolean::make("Active")->default(true)
+            Boolean::make("Building Expense", "building_expense")->default(true),
+            Boolean::make("None Building Expense", "non_building_expense")->default(true),
+            Boolean::make("Active", "active")->default(true)
         ];
     }
 
