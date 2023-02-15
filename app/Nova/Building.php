@@ -46,23 +46,23 @@ class Building extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Name", "name")->sortable(),
-            Text::make("Code", "code")->sortable(),            
+            Text::make("Name", "name")->rules("required")->sortable(),
+            Text::make("Code", "code")->creationRules('unique:buildings,code')->nullable()->sortable(),            
             Number::make("Construction Year", "construction_year"),
-            Date::make("Management Start Date", "management_start_date"),
+            Date::make("Management Start Date", "management_start_date")->rules("required"),
             Text::make("Address", "address"),
             Text::make("Postal Code", "postal_code"),
             Text::make("District", "district"),
-            Text::make("Country", "country"),
+            Text::make("Country", "country")->default("CY"),
             Text::make("City", "city")->default("Cyprus"),
             BelongsTo::make('Property Type', "PropertyType"),
-            BelongsTo::make("Responsible User", "responsible", \App\Nova\User::class),
+            BelongsTo::make("Responsible User", "Responsible", \App\Nova\User::class),
             Boolean::make("Internal Square Metes Payable", "internal_square_metes_payable")->default(true),
             Boolean::make("Covered Veranda Payable", "covered_veranda_payable")->default(true),
             Boolean::make("Mezanne Payable", "mezanne_payable")->default(true),
             Boolean::make("Other Payable", "other_payable")->default(true),
             Boolean::make("Fixed Percentage", "fixed_percentage")->default(false),
-            Boolean::make("Active", "active"),
+            Boolean::make("Active", "active")->default(true),
 
         ];
     }

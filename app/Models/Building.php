@@ -33,9 +33,9 @@ class Building extends Model
         "management_start_date"=> "date"
     ];
     
-    public function responsible()
+    public function Responsible()
     {
-        return $this->belongsTo(User::class, "responsible", "id");
+        return $this->belongsTo(User::class, 'responsible');
     }
 
     public function getResponsibleAttribute(){
