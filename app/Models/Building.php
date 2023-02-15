@@ -32,7 +32,7 @@ class Building extends Model
     protected $casts = [
         "management_start_date"=> "date"
     ];
-    
+
     public function Responsible()
     {
         return $this->belongsTo(User::class, 'responsible');

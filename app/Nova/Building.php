@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Panel;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Building extends Resource
@@ -45,25 +46,46 @@ class Building extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make("Name", "name")->rules("required")->sortable(),
-            Text::make("Code", "code")->creationRules('unique:buildings,code')->nullable()->sortable(),            
-            Number::make("Construction Year", "construction_year"),
-            Date::make("Management Start Date", "management_start_date")->rules("required"),
-            Text::make("Address", "address"),
-            Text::make("Postal Code", "postal_code"),
-            Text::make("District", "district"),
-            Text::make("Country", "country")->default("CY"),
-            Text::make("City", "city")->default("Cyprus"),
-            BelongsTo::make('Property Type', "PropertyType"),
-            BelongsTo::make("Responsible User", "Responsible", \App\Nova\User::class),
-            Boolean::make("Internal Square Metes Payable", "internal_square_metes_payable")->default(true),
-            Boolean::make("Covered Veranda Payable", "covered_veranda_payable")->default(true),
-            Boolean::make("Mezanne Payable", "mezanne_payable")->default(true),
-            Boolean::make("Other Payable", "other_payable")->default(true),
-            Boolean::make("Fixed Percentage", "fixed_percentage")->default(false),
-            Boolean::make("Active", "active")->default(true),
-
+            Panel::make('Buildings',[
+                ID::make()->sortable(),
+                Text::make("Name", "name")->rules("required")->sortable(),
+                Text::make("Code", "code")->creationRules('unique:buildings,code')->nullable()->sortable(),            
+                Number::make("Construction Year", "construction_year"),
+                Date::make("Management Start Date", "management_start_date")->rules("required"),
+                Text::make("Address", "address"),
+                Text::make("Postal Code", "postal_code"),
+                Text::make("District", "district"),
+                Text::make("Country", "country")->default("CY"),
+                Text::make("City", "city")->default("Cyprus"),
+                BelongsTo::make('Property Type', "PropertyType"),
+                BelongsTo::make("Responsible User", "Responsible", \App\Nova\User::class),
+                Boolean::make("Internal Square Metes Payable", "internal_square_metes_payable")->default(true),
+                Boolean::make("Covered Veranda Payable", "covered_veranda_payable")->default(true),
+                Boolean::make("Mezanne Payable", "mezanne_payable")->default(true),
+                Boolean::make("Other Payable", "other_payable")->default(true),
+                Boolean::make("Fixed Percentage", "fixed_percentage")->default(false),
+                Boolean::make("Active", "active")->default(true),
+            ]),
+            Panel::make('Units',[
+                ID::make()->sortable(),
+                Text::make("Name", "name")->rules("required")->sortable(),
+                Text::make("Code", "code")->creationRules('unique:buildings,code')->nullable()->sortable(),            
+                Number::make("Construction Year", "construction_year"),
+                Date::make("Management Start Date", "management_start_date")->rules("required"),
+                Text::make("Address", "address"),
+                Text::make("Postal Code", "postal_code"),
+                Text::make("District", "district"),
+                Text::make("Country", "country")->default("CY"),
+                Text::make("City", "city")->default("Cyprus"),
+                BelongsTo::make('Property Type', "PropertyType"),
+                BelongsTo::make("Responsible User", "Responsible", \App\Nova\User::class),
+                Boolean::make("Internal Square Metes Payable", "internal_square_metes_payable")->default(true),
+                Boolean::make("Covered Veranda Payable", "covered_veranda_payable")->default(true),
+                Boolean::make("Mezanne Payable", "mezanne_payable")->default(true),
+                Boolean::make("Other Payable", "other_payable")->default(true),
+                Boolean::make("Fixed Percentage", "fixed_percentage")->default(false),
+                Boolean::make("Active", "active")->default(true),
+            ]),
         ];
     }
 
