@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Resident extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        "birthdate"=> "date"
+    ];
 }
