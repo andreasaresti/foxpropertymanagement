@@ -30,5 +30,10 @@ class DatabaseSeeder extends Seeder
         DB::table('property_types')->insert([
             'name'=> "Owner Properties"
         ]);
+        DB::table('users')->insert([
+            'name' => 'Andreas Aresti',
+            'email' => 'a.aresti@fosetico.com',
+            'password' => bcrypt('123456'),
+        ]);
     }
 }
