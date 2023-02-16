@@ -9,11 +9,15 @@ class Unit extends Model
 {
     use HasFactory;
 
+    public function building(){
+        return $this->belongsTo(Building::class);
+    }
+
     public function owner_residents(){
-        return $this->belongsToMany(Resident::class, "unit_owner_residents", "resident_id", "unit_id");
+        return $this->belongsToMany(Resident::class, "unit_owner_residents", "unit_id", "resident_id")->withPivot('start_date', 'end_date');
     }
 
     public function tenant_residents(){
-        return $this->belongsToMany(Resident::class, "unit_tenant_residents", "resident_id", "unit_id");
+        return $this->belongsToMany(Resident::class, "unit_tenant_residents", "unit_id", "resident_id")->withPivot('start_date', 'end_date');
     }
 }

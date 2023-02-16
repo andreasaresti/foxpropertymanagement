@@ -8,26 +8,26 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Panel;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Building extends Resource
+class Unit extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Building>
+     * @var class-string<\App\Models\Unit>
      */
-    public static $model = \App\Models\Building::class;
+    public static $model = \App\Models\Unit::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -47,29 +47,29 @@ class Building extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            Panel::make('Buildings',[
-                ID::make()->sortable(),
-                Text::make("Name", "name")->rules("required")->sortable(),
-                Text::make("Code", "code")->creationRules('unique:buildings,code')->nullable()->sortable(),            
-                Number::make("Construction Year", "construction_year"),
-                Date::make("Management Start Date", "management_start_date")->rules("required"),
-                Text::make("Address", "address"),
-                Text::make("Postal Code", "postal_code"),
-                Text::make("District", "district"),
-                Text::make("Country", "country")->default("CY"),
-                Text::make("City", "city")->default("Cyprus"),
-                BelongsTo::make('Property Type', "PropertyType"),
-                BelongsTo::make("Responsible User", "Responsible", \App\Nova\User::class),
-                Boolean::make("Internal Square Metes Payable", "internal_square_metes_payable")->default(true),
-                Boolean::make("Covered Veranda Payable", "covered_veranda_payable")->default(true),
-                Boolean::make("Mezanne Payable", "mezanne_payable")->default(true),
-                Boolean::make("Other Payable", "other_payable")->default(true),
-                Boolean::make("Fixed Percentage", "fixed_percentage")->default(false),
-                Boolean::make("Active", "active")->default(true),
-            ]),
-            Panel::make('Units',[
-                HasMany::make("units"),
-            ]),
+            ID::make()->sortable(),
+            BelongsTo::make("Building"),
+            Number::make("Number", "number"),
+            Text::make("Floor", "floor"),
+            Select::make("Apartment Type", "apartment_type")
+                ->options([
+                    'basement'=> "Basement",
+                    "group_floor"=> "Group Floor",
+                    "floor"=> "Floor",
+                    "penthouse"=> "Penthouse"
+                ]),
+            Number::make("Internal Sq Meters", "internal_sq_meters"),
+            Number::make("Covered Veranda", "covered_veranda"),
+            Number::make("Uncovered Veranda", "uncovered_venanda"),
+            Number::make("Mezanee", "mezanee"),
+            Text::make("Payable Area", "payable_area"),
+            Number::make("Owner Percentage", "owner_percentage"),
+            Select::make("Committee", "committee")
+                ->options([
+                    'no'=> "No",
+                    "president"=> "President",
+                    "member"=> "Member",
+                ]),
         ];
     }
 
