@@ -38,6 +38,10 @@ class Building extends Model
         return $this->belongsTo(User::class, 'responsible');
     }
 
+    public function units(){
+        return $this->hasMany(Unit::class);
+    }
+
     public function getResponsibleAttribute(){
         return $this->user;
     }

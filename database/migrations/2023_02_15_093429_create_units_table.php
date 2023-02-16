@@ -18,7 +18,16 @@ return new class extends Migration
             $table->unsignedBigInteger("building_id");
             $table->integer("number");
             $table->string("floor");
-            $table->string("text");
+            $table->string("apartment_type");
+            $table->float("internal_sq_meters")->default(0);
+            $table->float("covered_venanda")->default(0);
+            $table->float("uncovered_vananda")->default(0);
+            $table->string("mezanee");
+            $table->float("other")->default(0);
+            $table->string("payable_area");
+            $table->float("owner_percentage");
+            $table->string("committe");
+            $table->string("address");
             $table->timestamps();
         });
     }
