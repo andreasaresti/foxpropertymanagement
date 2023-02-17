@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Unit extends Resource
@@ -59,17 +60,19 @@ class Unit extends Resource
                     "penthouse"=> "Penthouse"
                 ]),
             Number::make("Internal Sq Meters", "internal_sq_meters"),
-            Number::make("Covered Veranda", "covered_veranda"),
-            Number::make("Uncovered Veranda", "uncovered_venanda"),
+            Number::make("Covered Venanda", "covered_venanda"),
+            Number::make("Uncovered Vananda", "uncovered_vananda"),
             Number::make("Mezanee", "mezanee"),
             Text::make("Payable Area", "payable_area"),
             Number::make("Owner Percentage", "owner_percentage"),
-            Select::make("Committee", "committee")
+            Select::make("Committe", "committe")
                 ->options([
                     'no'=> "No",
                     "president"=> "President",
                     "member"=> "Member",
                 ]),
+            BelongsToManyField::make('Owner Resident', 'residents', 'App\Nova\Resident')
+                ->withIntermediateTable("unit_owner_residents"),
         ];
     }
 
