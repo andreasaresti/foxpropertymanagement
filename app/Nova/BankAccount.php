@@ -44,7 +44,7 @@ class BankAccount extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Name", "name")->sortable(),
+            Text::make("Name", "name")->translatable()->sortable(),
             Text::make("Bank", "bank")->sortable(),
             Text::make("Account Number", "account_number")->sortable(),
             Text::make("IBAN", "iban")->sortable(),

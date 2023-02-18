@@ -71,8 +71,8 @@ class Unit extends Resource
                     "president"=> "President",
                     "member"=> "Member",
                 ]),
-            BelongsToManyField::make('Owner Resident', 'residents', 'App\Nova\Resident')
-                ->withIntermediateTable("unit_owner_residents"),
+            BelongsToMany::make('Owner Resident', 'residents', 'App\Nova\Resident')
+                ->using("unit_owner_residents"),
         ];
     }
 
