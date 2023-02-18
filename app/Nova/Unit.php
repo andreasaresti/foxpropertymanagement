@@ -70,7 +70,13 @@ class Unit extends Resource
                     'no'=> "No",
                     "president"=> "President",
                     "member"=> "Member",
+<<<<<<< HEAD
                 ])->required(),
+=======
+                ]),
+            BelongsToMany::make('Owner Resident', 'residents', 'App\Nova\Resident')
+                ->using("unit_owner_residents"),
+>>>>>>> master
         ];
     }
 
