@@ -75,6 +75,18 @@ class DatabaseSeeder extends Seeder
             'payable_area' => '100',
             'committe' => 'president',
         ]);
+        DB::table('residents')->insert([
+            'name' => 'Name 1',
+            'lastname' => 'Last Name 1',
+            'phone' => 'Phone 1',
+            'email' => 'email1@example.com',
+        ]);
+        DB::table('residents')->insert([
+            'name' => 'Name 2',
+            'lastname' => 'Last Name 2',
+            'phone' => 'Phone 2',
+            'email' => 'email2@example.com',
+        ]);
 
         /*
 Number::make("Number", "number")->required(),

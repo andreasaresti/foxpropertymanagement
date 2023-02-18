@@ -27,10 +27,9 @@ class Resident extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
-
-    /**
-     * The columns that should be searched.
+    public static $title = 'name';
+    
+     /* The columns that should be searched.
      *
      * @var array
      */

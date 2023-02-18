@@ -13,6 +13,13 @@ class Unit extends Model
         return $this->belongsTo(Building::class);
     }
 
+    public function UnitOwnerResident(){
+        return $this->belongsTo(UnitOwnerResident::class);
+    }
+    public function UnitTenantResident(){
+        return $this->belongsTo(UnitTenantResident::class);
+    }
+
     public function owner_residents(){
         return $this->belongsToMany(Resident::class, "unit_owner_residents", "unit_id", "resident_id")->withPivot('start_date', 'end_date');
     }

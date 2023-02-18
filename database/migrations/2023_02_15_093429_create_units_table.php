@@ -28,6 +28,8 @@ return new class extends Migration
             $table->float("owner_percentage")->default(0);
             $table->string("committe")->default('no');
             $table->string("address")->nullable();
+            $table->string("unit_owner_residents_id")->nullable();
+            $table->string("unit_tenant_residents_id")->nullable();
             $table->timestamps();
         });
     }

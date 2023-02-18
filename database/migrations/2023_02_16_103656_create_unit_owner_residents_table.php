@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("resident_id");
             $table->unsignedBigInteger("unit_id");
             $table->date("start_date");
-            $table->date("end_date")->default(null);
+            $table->date("end_date")->nullable();
             $table->timestamps();
         });
     }
