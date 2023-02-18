@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class unitTenantResident extends Model
 {
     use HasFactory;
+    public function building(){
+        return $this->belongsTo(Unit::class);
+    }
 }

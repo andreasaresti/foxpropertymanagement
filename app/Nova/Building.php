@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
@@ -55,9 +56,9 @@ class Building extends Resource
                 Date::make("Management Start Date", "management_start_date")->rules("required"),
                 Text::make("Address", "address"),
                 Text::make("Postal Code", "postal_code"),
-                Text::make("District", "district"),
-                Text::make("Country", "country")->default("CY"),
-                Text::make("City", "city")->default("Cyprus"),
+                Text::make("City", "city")->rules("required"),
+                Text::make("District", "district")->rules("required"),
+                Country::make("Country", "country")->default("CY")->rules("required"),
                 BelongsTo::make('Property Type', "PropertyType"),
                 BelongsTo::make("Responsible User", "Responsible", \App\Nova\User::class),
                 Boolean::make("Internal Square Metes Payable", "internal_square_metes_payable")->default(true),
@@ -67,8 +68,8 @@ class Building extends Resource
                 Boolean::make("Fixed Percentage", "fixed_percentage")->default(false),
                 Boolean::make("Active", "active")->default(true),
             ]),
-            Panel::make('Units',[
-                HasMany::make("units"),
+            Panel::make('Variants',[               
+                HasMany::make('Units', 'units', Unit::class),
             ]),
         ];
     }

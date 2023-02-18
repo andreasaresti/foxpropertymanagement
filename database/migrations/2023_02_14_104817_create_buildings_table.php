@@ -16,22 +16,22 @@ return new class extends Migration
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("code")->default(null);
-            $table->integer("construction_year")->default(null);
-            $table->date("management_start_date");
-            $table->string("address");
-            $table->string("postal_code");
-            $table->string("district");
-            $table->string("country");
-            $table->string("city")->default("Cyprus"); 
-            $table->unsignedBigInteger("type");
-            $table->unsignedBigInteger("responsible");
+            $table->string("code")->nullable();
+            $table->integer("construction_year")->nullable();
+            $table->date("management_start_date")->nullable();
+            $table->string("address")->nullable();
+            $table->string("postal_code")->nullable();
+            $table->string("district")->nullable();
+            $table->string("country")->nullable();
+            $table->string("city")->default("Cyprus")->nullable(); 
+            $table->unsignedBigInteger("type")->nullable();
+            $table->unsignedBigInteger("responsible")->nullable();
             $table->boolean("internal_square_metes_payable")->default(true);
             $table->boolean("covered_veranda_payable")->default(true);
             $table->boolean("mezanne_payable")->default(true);
             $table->boolean("other_payable")->default(true);
             $table->boolean("fixed_percentage")->default(false);
-            $table->boolean("active");
+            $table->boolean("active")->default(true);
             $table->timestamps();
 
             $table->foreign('type')->references('id')->on('property_types');

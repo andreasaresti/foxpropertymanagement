@@ -10,6 +10,8 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Country;
+use Laravel\Nova\Fields\Trix;
 
 class Resident extends Resource
 {
@@ -46,13 +48,14 @@ class Resident extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Name", "name"),
-            Text::make("Last Name Phone", "lastnamephone"),
-            Text::make("Email", "email"),
-            Text::make("Address", "address"),
+            Text::make("Name", "name")->required(),
+            Text::make("Last Name", "lastname")->required(),
+            Text::make("Phone", "phone")->required(),
+            Text::make("Email", "email")->required(),
             Text::make("Extcode", "extcode"),
+            Text::make("Address", "address"),
             Text::make("Father Name", "fathername"),
-            Date::make("Birthdate", "birthdate")->default("1990-01-01"),
+            Date::make("Birthdate", "birthdate"),
             Number::make("ID Number", "id_number"),
             Text::make("Passport", "passport"),
             Text::make("Gender", "gender"),
@@ -64,13 +67,13 @@ class Resident extends Resource
             Text::make("Email 2", "email2"),
             Text::make("City", "city"),
             Text::make("District", "district"),
-            Text::make("Country", "country"),
+            Country::make("Country", "country"),
             Text::make("Postal Code", "postalcode"),
             Text::make("Mail Address1", "mailaddress1"),
             Text::make("Mail Address2", "mailaddress2"),
             Text::make("Mail City", "mailcity"),
             Text::make("Mail District", "maildistrict"),
-            Text::make("Mail Country", "mailcountry"),
+            Country::make("Mail Country", "mailcountry"),
             Text::make("Mail PostalCode", "mailpostalcode"),
             Text::make("Current Employer", "currentemployer"),
             Text::make("Job Title", "jobtitle"),
@@ -78,15 +81,15 @@ class Resident extends Resource
             Text::make("Work Address2", "workaddress2"),
             Text::make("Work City", "workcity"),
             Text::make("Work District", "workdistrict"),
-            Text::make("Work Country", "workcountry"),
+            Country::make("Work Country", "workcountry"),
             Text::make("Work PostalCode", "workpostalcode"),
-            Text::make("Comments", "comments"),
-            Text::make("Emergency Address Country", "emergency_address_country"),
+            Country::make("Emergency Address Country", "emergency_address_country"),
             Text::make("Emergency Address City", "emergency_address_city"),
             Text::make("Emergency Address", "emergency_address"),
             Text::make("Emergency Address PostalCode", "emergency_address_postal_code"),
             Text::make("Emergency Address Phone", "emergency_address_phone"),
             Text::make("Emergency Address Mobile", "emergency_address_mobile"),
+            Trix::make("Comments", "comments"),
             Boolean::make("Active", "active")->default(true)
         ];
     }
