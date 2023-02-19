@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date("start_date");
             $table->date("end_date")->nullable();
             $table->timestamps();
+            $table->foreign('resident_id')->references('id')->on('residents');
+            $table->foreign('unit_id')->references('id')->on('units');
         });
     }
 

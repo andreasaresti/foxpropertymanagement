@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bank_accounts', function (Blueprint $table) {
+        Schema::create('charge_rules', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("bank");
-            $table->string("account_number");
-            $table->string("iban");
-            $table->float("starting_balance")->default(0);
-            $table->unsignedBigInteger("building_id")->nullable();
+            $table->string("ext_code")->nullable()->unique();
+            $table->unsignedBigInteger("building_id");
+            $table->unsignedBigInteger("fund_id");
+            $table->integer("recurrence_number")->default(1);
+            $table->integer("cycles_number")->default(1);
             $table->timestamps();
-
             $table->foreign('building_id')->references('id')->on('buildings');
+            $table->foreign('fund_id')->references('id')->on('funds');
         });
     }
 
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bank_accounts');
+        Schema::dropIfExists('charge_rules');
     }
 };

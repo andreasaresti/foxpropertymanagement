@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('unit_owner_residents', function (Blueprint $table) {
+        Schema::create('charge_rule_unit_percentages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("resident_id");
+            $table->unsignedBigInteger("charge_rule_id");
             $table->unsignedBigInteger("unit_id");
-            $table->date("start_date");
-            $table->date("end_date")->nullable();
+            $table->float("percentage")->nullable();
             $table->timestamps();
-            $table->foreign('resident_id')->references('id')->on('residents');
             $table->foreign('unit_id')->references('id')->on('units');
+            $table->foreign('charge_rule_id')->references('id')->on('charge_rules');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit_owner_residents');
+        Schema::dropIfExists('charge_rule_unit_percentages');
     }
 };
