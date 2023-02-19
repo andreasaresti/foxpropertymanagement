@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("ext_code")->nullable()->unique();
             $table->unsignedBigInteger("building_id");
             $table->unsignedBigInteger("fund_id");
+            $table->date("start_date");
             $table->integer("recurrence_number")->default(1);
             $table->integer("cycles_number")->default(1);
             $table->timestamps();
