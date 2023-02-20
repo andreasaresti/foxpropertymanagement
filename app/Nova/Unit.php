@@ -71,9 +71,10 @@ class Unit extends Resource
                     "president"=> "President",
                     "member"=> "Member",
                 ])->required(),
-            // BelongsTo::make("UnitOwnerResident", 'resident_id', 'App\Nova\UnitOwnerResident')->required(),
-            BelongsTo::make("UnitOwnerResident")->required(),
-            BelongsTo::make("UnitTenantResident")->required(),
+            BelongsTo::make("Unit Owner Resident", 'UnitOwnerResident', 'App\Nova\Resident')->required(),
+            BelongsTo::make("Unit Tenant Resident", 'UnitOwnerResident', 'App\Nova\Resident')->required(),
+            //BelongsTo::make("Unit Owner Resident", "Resident")->required(),
+            //BelongsTo::make("Unit Tenant Resident", "Resident")->required(),
         ];
     }
 
