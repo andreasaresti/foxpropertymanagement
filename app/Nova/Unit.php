@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 
 class Unit extends Resource
 {
@@ -87,7 +88,9 @@ class Unit extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            Breadcrumbs::make($request,$this)
+        ];
     }
 
     /**
