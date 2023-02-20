@@ -10,7 +10,7 @@ class Fund extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name","building_id", "type"
+        "name","building_id", "type", "starting_balance"
     ];
     public function Building()
     {

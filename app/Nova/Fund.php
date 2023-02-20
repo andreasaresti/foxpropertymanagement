@@ -50,6 +50,7 @@ class Fund extends Resource
                 "owner"=> ["label"=> "Owner", "value"=> "owner"],
                 "tenant"=> ["label"=> "Tenant", "value"=> "tenant"]
             ])->displayUsingLabels(),
+            Number::make("Starting Balance", "starting_balance")
         ];
     }
 
