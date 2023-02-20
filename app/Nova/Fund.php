@@ -9,6 +9,8 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Panel;
+use Laravel\Nova\Fields\HasMany;
 
 class Fund extends Resource
 {
@@ -44,14 +46,19 @@ class Fund extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make("Name", "name")->rules("required"),
-            BelongsTo::make('Buildings', "Building"),
-            Select::make("Type", "type")->options([
-                "owner"=> ["label"=> "Owner", "value"=> "owner"],
-                "tenant"=> ["label"=> "Tenant", "value"=> "tenant"]
-            ])->displayUsingLabels(),
-            Number::make("Starting Balance", "starting_balance")
+            Panel::make('Fund',[
+                ID::make()->sortable(),
+                Text::make("Name", "name")->rules("required"),
+                BelongsTo::make('Buildings', "Building"),
+                Select::make("Type", "type")->options([
+                    "owner"=> ["label"=> "Owner", "value"=> "owner"],
+                    "tenant"=> ["label"=> "Tenant", "value"=> "tenant"]
+                ])->displayUsingLabels(),
+                Number::make("Starting Balance", "starting_balance")
+            ]),
+            Panel::make('Charge Rule',[               
+                HasMany::make('Charge Rule', 'charge_rules', ChargeRule::class),
+            ]),
         ];
     }
 

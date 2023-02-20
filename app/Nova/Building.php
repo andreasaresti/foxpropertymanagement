@@ -71,6 +71,7 @@ class Building extends Resource
             ]),
             Panel::make('Variants',[               
                 HasMany::make('Units', 'units', Unit::class),
+                HasMany::make('Funds', 'funds', Fund::class),
             ]),
         ];
     }

@@ -42,6 +42,10 @@ class Building extends Model
         return $this->hasMany(Unit::class);
     }
 
+    public function funds(){
+        return $this->hasMany(Fund::class);
+    }
+
     public function getResponsibleAttribute(){
         return $this->user;
     }
