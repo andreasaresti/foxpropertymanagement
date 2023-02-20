@@ -17,13 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("ext_code")->nullable()->unique();
-            $table->unsignedBigInteger("building_id");
             $table->unsignedBigInteger("fund_id");
             $table->date("start_date");
             $table->integer("recurrence_number")->default(1);
             $table->integer("cycles_number")->default(1);
             $table->timestamps();
-            $table->foreign('building_id')->references('id')->on('buildings');
             $table->foreign('fund_id')->references('id')->on('funds');
         });
     }
