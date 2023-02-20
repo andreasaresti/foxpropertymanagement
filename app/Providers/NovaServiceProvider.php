@@ -6,6 +6,17 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
+use App\Nova\BankAccount;
+use App\Nova\Building;
+use App\Nova\ExpenseCategory;
+use App\Nova\Resident;
+
+use Illuminate\Http\Request;
+use Laravel\Nova\Dashboards\Main;
+use Laravel\Nova\Menu\Menu;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
+
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -16,6 +27,22 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::mainMenu(function (Request $request) {
+            return [
+                MenuSection::dashboard(Main::class)->icon('chart-bar'),
+
+                MenuSection::make('Building Records', [
+                    MenuItem::resource(Building::class),
+                    MenuItem::resource(Resident::class),
+                ])->icon('user')->collapsable(),
+
+                MenuSection::make('Records', [
+                    MenuItem::resource(BankAccount::class),
+                    MenuItem::resource(ExpenseCategory::class),
+                ])->icon('document-text')->collapsable(),
+            ];
+        });
     }
 
     /**

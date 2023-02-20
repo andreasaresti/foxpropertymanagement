@@ -27,6 +27,7 @@ class Resident extends Resource
      *
      * @var string
      */
+    public static $group = "Building Records";
     public static $title = 'name';
     
      /* The columns that should be searched.

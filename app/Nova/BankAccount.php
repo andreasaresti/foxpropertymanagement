@@ -23,6 +23,7 @@ class BankAccount extends Resource
      *
      * @var string
      */
+    public static $group = "Records";
     public static $title = 'id';
 
     /**
