@@ -10,13 +10,13 @@ use App\Nova\BankAccount;
 use App\Nova\Building;
 use App\Nova\ExpenseCategory;
 use App\Nova\Resident;
+use App\Nova\JobCategory;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main;
 use Laravel\Nova\Menu\Menu;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
-
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -40,6 +40,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 MenuSection::make('Records', [
                     MenuItem::resource(BankAccount::class),
                     MenuItem::resource(ExpenseCategory::class),
+                ])->icon('document-text')->collapsable(),
+
+                MenuSection::make('Others', [
+                    MenuItem::resource(JobCategory::class),
                 ])->icon('document-text')->collapsable(),
             ];
         });
