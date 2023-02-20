@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Building;
+use App\Observers\BuildingObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        //parent::boot();
+        Building::observe(BuildingObserver::class);
     }
 }

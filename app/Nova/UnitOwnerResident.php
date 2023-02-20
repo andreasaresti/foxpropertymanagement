@@ -44,7 +44,6 @@ class UnitOwnerResident extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make("Unit","unit")->required(),
-            BelongsTo::make("Resident","resident")->required()->showCreateRelationButton(),
             Date::make("Start Date", "start_date")->rules("required"),
             Date::make("End Date", "end_date"),
         ];

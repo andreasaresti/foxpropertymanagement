@@ -5,16 +5,18 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
-class UnitTenantResident extends Resource
+use Laravel\Nova\Fields\Select;
+
+class Fund extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\UnitTenantResident>
+     * @var class-string<\App\Models\Fund>
      */
-    public static $model = \App\Models\UnitTenantResident::class;
+    public static $model = \App\Models\Fund::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -42,9 +44,12 @@ class UnitTenantResident extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make("Unit","unit")->required(),
-            Date::make("Start Date", "start_date")->rules("required"),
-            Date::make("End Date", "end_date"),
+            Text::make("Name", "name")->rules("required"),
+            BelongsTo::make('Buildings', "Building"),
+            Select::make("Type", "type")->options([
+                "owner"=> ["label"=> "Owner", "value"=> "owner"],
+                "tenant"=> ["label"=> "Tenant", "value"=> "tenant"]
+            ])->displayUsingLabels(),
         ];
     }
 
@@ -67,8 +72,7 @@ class UnitTenantResident extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [
-        ];
+        return [];
     }
 
     /**

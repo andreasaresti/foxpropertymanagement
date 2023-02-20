@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class unitTenantResident extends Model
 {
     use HasFactory;
+    protected $casts = [
+        "start_date"=> "date",
+        "end_date"=> "date"
+    ];
     public function unit(){
         return $this->belongsTo(Unit::class);
     }
