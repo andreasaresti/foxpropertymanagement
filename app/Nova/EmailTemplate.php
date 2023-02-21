@@ -5,7 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravle\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Textarea;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -45,6 +45,11 @@ class EmailTemplate extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make("Name", "name")->sortable(),
+            Text::make("Subject", "subject"),
+            Textarea::make("Body", "body"),
+            BelongsTo::make('Email Type', "EmailType"),
+            Text::make("BCC", "bcc")
         ];
     }
 
