@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 
 class Unit extends Resource
 {
@@ -71,8 +72,9 @@ class Unit extends Resource
                     "president"=> "President",
                     "member"=> "Member",
                 ])->required(),
-            BelongsTo::make("Unit Owner Resident", 'UnitOwnerResident', 'App\Nova\Resident')->required(),
-            BelongsTo::make("Unit Tenant Resident", 'UnitOwnerResident', 'App\Nova\Resident')->required(),
+            BelongsTo::make("Unit Owner Resident", 'UnitOwnerResident', 'App\Nova\UnitOwnerResident')->required()->searchable()->showCreateRelationButton(),
+            // BelongsTo::make('Customer')->searchable()->showCreateRelationButton(),
+            BelongsTo::make("Unit Tenant Resident", 'UnitTenantResident', 'App\Nova\UnitTenantResident')->required()->searchable()->showCreateRelationButton(),
             //BelongsTo::make("Unit Owner Resident", "Resident")->required(),
             //BelongsTo::make("Unit Tenant Resident", "Resident")->required(),
         ];
@@ -86,7 +88,9 @@ class Unit extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            Breadcrumbs::make($request,$this)
+        ];
     }
 
     /**

@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 
 class Building extends Resource
 {
@@ -30,6 +31,7 @@ class Building extends Resource
      */
     public static $group = "Building Records";
     public static $title = 'name';
+    public static $resolveParentBreadcrumbs = false;
 
     /**
      * The columns that should be searched.
@@ -84,7 +86,9 @@ class Building extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            Breadcrumbs::make($request,$this)
+        ];
     }
 
     /**
