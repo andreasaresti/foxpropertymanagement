@@ -14,10 +14,11 @@ class Unit extends Model
     }
 
     public function UnitOwnerResident(){
-        return $this->belongsTo(Resident::class, "unit_owner_residents_id");
+        return $this->belongsTo(UnitOwnerResident::class, "unit_owner_residents_id");
     }
+    
     public function UnitTenantResident(){
-        return $this->belongsTo(Resident::class, "unit_tenant_residents_id");
+        return $this->belongsTo(UnitTenantResident::class, "unit_tenant_residents_id");
     }
 
     /*public function owner_residents(){

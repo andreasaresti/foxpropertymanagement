@@ -32,6 +32,9 @@ class UnitTenantResident extends Resource
         'id',
     ];
 
+    public function title(){
+        return $this->id . "- " . $this->Resident->name;
+    }
     /**
      * Get the fields displayed by the resource.
      *
@@ -42,7 +45,7 @@ class UnitTenantResident extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make("Unit","unit")->required(),
+            BelongsTo::make("Resident", "Resident")->required()->showCreateRelationButton(),
             Date::make("Start Date", "start_date")->rules("required"),
             Date::make("End Date", "end_date"),
         ];

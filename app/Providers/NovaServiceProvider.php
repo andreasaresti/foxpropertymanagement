@@ -13,6 +13,7 @@ use App\Nova\Resident;
 use App\Nova\JobCategory;
 use App\Nova\EmailTemplate;
 use App\Nova\EmailType;
+use App\Nova\UnitOwnerResident;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main;
@@ -47,7 +48,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 MenuSection::make('Others', [
                     MenuItem::resource(JobCategory::class),
                     MenuItem::resource(EmailTemplate::class),
-                    MenuItem::resource(EmailType::class)
+                    MenuItem::resource(EmailType::class),
+                    MenuItem::resource(UnitOwnerResident::class)
                 ])->icon('document-text')->collapsable(),
             ];
         });

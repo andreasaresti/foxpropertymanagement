@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class unitOwnerResident extends Model
+class UnitOwnerResident extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,8 @@ class unitOwnerResident extends Model
         "end_date"=> "date"
     ];
 
-    public function unit(){
-        return $this->belongsTo(Unit::class);
+    public function Resident(){
+        return $this->belongsTo(Resident::class);
     }
 
 }

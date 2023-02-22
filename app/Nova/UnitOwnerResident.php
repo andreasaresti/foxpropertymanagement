@@ -7,7 +7,6 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-
 class UnitOwnerResident extends Resource
 {
     /**
@@ -30,8 +29,12 @@ class UnitOwnerResident extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id'
     ];
+
+    public function title(){
+        return $this->id . "- " . $this->Resident->name;
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -43,7 +46,7 @@ class UnitOwnerResident extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make("Unit","unit")->required(),
+            BelongsTo::make("Resident", "Resident")->required()->showCreateRelationButton(),
             Date::make("Start Date", "start_date")->rules("required"),
             Date::make("End Date", "end_date"),
         ];
