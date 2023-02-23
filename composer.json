@@ -10,6 +10,7 @@
     }],
     "require": {
         "php": "^8.0.2",
+        "algolia/algoliasearch-client-php": "^3.3",
         "ardenthq/nova-image-gallery-field": "^1.0",
         "ebess/advanced-nova-media-library": "^4.0",
         "energon7/nova-menu-builder": "^2.1",
@@ -18,6 +19,7 @@
         "laravel/framework": "^9.19",
         "laravel/nova": "^4.19",
         "laravel/sanctum": "^3.0",
+        "laravel/scout": "^9.8",
         "laravel/tinker": "^2.7",
         "ostheneo/nova-fields": "^1.1",
         "outl1ne/nova-menu-builder": "^7.1",

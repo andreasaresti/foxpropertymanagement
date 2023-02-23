@@ -73,10 +73,7 @@ class Unit extends Resource
                     "member"=> "Member",
                 ])->required(),
             BelongsTo::make("Unit Owner Resident", 'UnitOwnerResident', 'App\Nova\UnitOwnerResident')->searchable()->showCreateRelationButton(),
-            // BelongsTo::make('Customer')->searchable()->showCreateRelationButton(),
             BelongsTo::make("Unit Tenant Resident", 'UnitTenantResident', 'App\Nova\UnitTenantResident')->searchable()->showCreateRelationButton(),
-            //BelongsTo::make("Unit Owner Resident", "Resident")->required(),
-            //BelongsTo::make("Unit Tenant Resident", "Resident")->required(),
         ];
     }
 
