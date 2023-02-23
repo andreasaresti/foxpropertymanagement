@@ -18,4 +18,8 @@ class UnitOwnerResident extends Model
         return $this->belongsTo(Resident::class);
     }
 
+    public function Unit(){
+        return $this->belongsTo(Unit::class);
+    }
+
 }

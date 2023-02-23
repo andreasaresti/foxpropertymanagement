@@ -12,7 +12,12 @@ class UnitTenantResident extends Model
         "start_date"=> "date",
         "end_date"=> "date"
     ];
+
     public function Resident(){
         return $this->belongsTo(Resident::class);
+    }
+
+    public function Unit(){
+        return $this->belongsTo(Unit::class);
     }
 }

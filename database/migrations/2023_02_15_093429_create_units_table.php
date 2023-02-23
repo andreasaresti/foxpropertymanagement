@@ -32,8 +32,6 @@ return new class extends Migration
             $table->unsignedBigInteger("unit_tenant_residents_id")->nullable();
             $table->timestamps();
             $table->foreign('building_id')->references('id')->on('buildings');
-            $table->foreign('unit_owner_residents_id')->references('id')->on('unit_owner_residents');
-            $table->foreign('unit_tenant_residents_id')->references('id')->on('unit_tenant_residents');
         });
     }
 
