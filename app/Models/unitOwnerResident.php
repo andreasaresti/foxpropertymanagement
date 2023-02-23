@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Model; 
 class UnitOwnerResident extends Model
 {
     use HasFactory;
@@ -12,6 +11,14 @@ class UnitOwnerResident extends Model
     protected $casts = [
         "start_date"=> "date",
         "end_date"=> "date"
+    ];
+
+    public static $search = [
+        'resident.name'
+    ];
+    
+    protected $fillable = [
+        "unit_id","resident_id", "start_date", "end_date"
     ];
 
     public function Resident(){

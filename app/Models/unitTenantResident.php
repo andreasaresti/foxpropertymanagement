@@ -13,6 +13,10 @@ class UnitTenantResident extends Model
         "end_date"=> "date"
     ];
 
+    protected $fillable = [
+        "unit_id","resident_id", "start_date", "end_date"
+    ];
+    
     public function Resident(){
         return $this->belongsTo(Resident::class);
     }

@@ -48,7 +48,7 @@ class Resident extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Name", "name")->required(),
+            Text::make("Name", "name")->sortable(),
             Text::make("Last Name", "lastname")->required(),
             Text::make("Phone", "phone")->required(),
             Text::make("Email", "email")->required(),
