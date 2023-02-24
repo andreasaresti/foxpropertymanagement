@@ -14,7 +14,7 @@ class UnitOwnerResident extends Model
     ];
 
     public static $search = [
-        'resident.name'
+        'Resident.name'
     ];
     
     protected $fillable = [

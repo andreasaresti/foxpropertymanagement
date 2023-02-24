@@ -29,7 +29,7 @@ class UnitOwnerResident extends Resource
      * @var array
      */
     public static $search = [
-        'id'
+        'resident.name', "resident.phone", "resident.lastname", "resident.email"
     ];
 
     public function title(){
