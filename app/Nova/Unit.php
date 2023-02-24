@@ -75,8 +75,8 @@ class Unit extends Resource
                     "president"=> "President",
                     "member"=> "Member",
                 ])->required(),
-            BelongsTo::make("Unit Owner Resident", 'UnitOwnerResident', 'App\Nova\UnitOwnerResident')->searchable()->showCreateRelationButton(),
-            BelongsTo::make("Unit Tenant Resident", 'UnitTenantResident', 'App\Nova\UnitTenantResident')->searchable()->showCreateRelationButton(),
+            //BelongsTo::make("Unit Owner Resident", 'UnitOwnerResident', 'App\Nova\UnitOwnerResident')->searchable()->showCreateRelationButton(),
+            //BelongsTo::make("Unit Tenant Resident", 'UnitTenantResident', 'App\Nova\UnitTenantResident')->searchable()->showCreateRelationButton(),
         ]),
         Panel::make('Relationship',[               
             HasMany::make('Unit Owner Resident', 'owner_residents', UnitOwnerResident::class)->withMeta(["unit_id", $this->id ]),
