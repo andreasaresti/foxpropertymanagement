@@ -96,4 +96,14 @@ class UnitTenantResident extends Resource
     {
         return [];
     }
+
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
+    {
+        return '/resources/units/' . json_encode($resource->unit->id);
+    }
+
+    public static function redirectAfterUpdate(NovaRequest $request, $resource)
+    {
+        return '/resources/units/' . json_encode($resource->unit->id);
+    }
 }

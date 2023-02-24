@@ -27,6 +27,8 @@ class UnitOwnerResidentObserver
         }
         $unitOwnerResident->end_date = null;
         $unitOwnerResident->save();
+
+        //return redirect("/resources/units/" . $unitOwnerResident->id );
     }
 
     /**

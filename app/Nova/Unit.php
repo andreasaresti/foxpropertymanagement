@@ -79,7 +79,7 @@ class Unit extends Resource
             BelongsTo::make("Unit Tenant Resident", 'UnitTenantResident', 'App\Nova\UnitTenantResident')->searchable()->showCreateRelationButton(),
         ]),
         Panel::make('Relationship',[               
-            HasMany::make('Unit Owner Resident', 'owner_residents', UnitOwnerResident::class),
+            HasMany::make('Unit Owner Resident', 'owner_residents', UnitOwnerResident::class)->withMeta(["unit_id", $this->id ]),
             HasMany::make('Unit Tenant Resident', 'tenant_residents', UnitTenantResident::class),
         ])];
     }
