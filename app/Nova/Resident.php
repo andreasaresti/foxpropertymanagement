@@ -35,7 +35,7 @@ class Resident extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name', "lastname", "phone", "email"
     ];
 
     /**
