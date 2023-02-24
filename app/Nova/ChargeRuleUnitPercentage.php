@@ -4,27 +4,26 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Number;
 
-class ChargeRule extends Resource
+use Laravel\Nova\Http\Requests\NovaRequest;
+
+class ChargeRuleUnitPercentage extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\ChargeRule>
+     * @var class-string<\App\Models\ChargeRuleUnitPercentage>
      */
-    public static $model = \App\Models\ChargeRules::class;
+    public static $model = \App\Models\ChargeRuleUnitPercentage::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -45,12 +44,9 @@ class ChargeRule extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Name", "name")->sortable(),
-            Text::make("Ext Code", "ext_code")->creationRules('unique:charge_rules,ext_code')->nullable()->rules("required"),
-            BelongsTo::make("Fund", "Fund", \App\Nova\Fund::class)->showCreateRelationButton(),
-            Date::make("Start Date", "start_date"),
-            Number::make("Recurrence Number", "recurrence_number")->default(1),
-            Number::make("Cycles Number", "cycles_number")->default(1),
+            BelongsTo::make("ChargeRule")->showCreateRelationButton(),
+            BelongsTo::make("Unit")->showCreateRelationButton(),
+            Number::make("Percentage")->sortable()
         ];
     }
 

@@ -13,7 +13,8 @@ use App\Nova\Resident;
 use App\Nova\JobCategory;
 use App\Nova\EmailTemplate;
 use App\Nova\EmailType;
-use App\Nova\UnitOwnerResident;
+use App\Nova\ChargeRule;
+use App\Nova\ChargeRuleUnitPercentage;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main;
@@ -49,7 +50,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(JobCategory::class),
                     MenuItem::resource(EmailTemplate::class),
                     MenuItem::resource(EmailType::class),
-                    MenuItem::resource(UnitOwnerResident::class)
+                    MenuItem::resource(ChargeRule::class),
+                    MenuItem::resource(ChargeRuleUnitPercentage::class)
                 ])->icon('document-text')->collapsable(),
             ];
         });
