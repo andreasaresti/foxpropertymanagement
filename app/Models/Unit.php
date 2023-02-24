@@ -21,11 +21,11 @@ class Unit extends Model
         return $this->belongsTo(UnitTenantResident::class, "unit_tenant_residents_id");
     }
 
-    /*public function owner_residents(){
-        return $this->belongsToMany(Resident::class, "unit_owner_residents", "unit_id", "resident_id")->withPivot('start_date', 'end_date');
+    public function owner_residents(){
+        return $this->hasMany(UnitOwnerResident::class, "unit_id");
     }
 
     public function tenant_residents(){
-        return $this->belongsToMany(Resident::class, "unit_tenant_residents", "unit_id", "resident_id")->withPivot('start_date', 'end_date');
-    }*/
+        return $this->hasMany(UnitTenantResident::class, "unit_id");
+    }
 }

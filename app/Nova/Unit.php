@@ -11,6 +11,8 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Hasmany;
+use Laravel\Nova\Panel;
 use Benjacho\BelongsToManyField\BelongsToManyField;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Formfeed\Breadcrumbs\Breadcrumbs;
@@ -49,6 +51,7 @@ class Unit extends Resource
     public function fields(NovaRequest $request)
     {
         return [
+        Panel::make('Unit', [
             ID::make()->sortable(),
             BelongsTo::make("Building")->required(),
             Number::make("Number", "number")->required(),
@@ -74,7 +77,11 @@ class Unit extends Resource
                 ])->required(),
             BelongsTo::make("Unit Owner Resident", 'UnitOwnerResident', 'App\Nova\UnitOwnerResident')->searchable()->showCreateRelationButton(),
             BelongsTo::make("Unit Tenant Resident", 'UnitTenantResident', 'App\Nova\UnitTenantResident')->searchable()->showCreateRelationButton(),
-        ];
+        ]),
+        Panel::make('Relationship',[               
+            HasMany::make('Unit Owner Resident', 'owner_residents', UnitOwnerResident::class),
+            HasMany::make('Unit Tenant Resident', 'tenant_residents', UnitTenantResident::class),
+        ])];
     }
 
     /**
