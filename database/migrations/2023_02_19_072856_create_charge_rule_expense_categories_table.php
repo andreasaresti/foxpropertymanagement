@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('expense_category_id')->references('id')->on('expense_categories');
             $table->foreign('charge_rule_id')->references('id')->on('charge_rules');
+            $table->unique('charge_rule_id', 'expense_category_id');
         });
     }
 

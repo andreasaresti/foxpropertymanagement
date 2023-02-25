@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('unit_id')->references('id')->on('units');
             $table->foreign('charge_rule_id')->references('id')->on('charge_rules');
+            $table->unique('charge_rule_id', 'unit_id');
         });
     }
 
