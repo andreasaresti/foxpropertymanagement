@@ -7,8 +7,10 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Hasmany;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Panel;
 
 class ChargeRule extends Resource
 {
@@ -44,13 +46,19 @@ class ChargeRule extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make("Name", "name")->sortable(),
-            Text::make("Ext Code", "ext_code")->creationRules('unique:charge_rules,ext_code')->nullable()->rules("required"),
-            BelongsTo::make("Fund", "Fund", \App\Nova\Fund::class)->showCreateRelationButton(),
-            Date::make("Start Date", "start_date"),
-            Number::make("Recurrence Number", "recurrence_number")->default(1),
-            Number::make("Cycles Number", "cycles_number")->default(1),
+            Panel::make("Chart Rules", [
+                ID::make()->sortable(),
+                Text::make("Name", "name")->sortable(),
+                Text::make("Ext Code", "ext_code")->creationRules('unique:charge_rules,ext_code')->nullable()->rules("required"),
+                BelongsTo::make("Fund", "Fund", \App\Nova\Fund::class)->showCreateRelationButton(),
+                Date::make("Start Date", "start_date"),
+                Number::make("Recurrence Number", "recurrence_number")->default(1),
+                Number::make("Cycles Number", "cycles_number")->default(1)
+            ]),
+            Panel::make('Subs',[               
+                HasMany::make('ChargeRuleExpenseCategory'),
+                HasMany::make("ChargeRuleUnitPercentage")
+            ]),
         ];
     }
 
