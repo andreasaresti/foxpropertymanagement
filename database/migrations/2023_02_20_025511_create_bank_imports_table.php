@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('bank_imports', function (Blueprint $table) {
             $table->id();
+            $table->string("reference_number")->nullable();
+            $table->string("description");
+            $table->date("transaction_date");
+            $table->string("payment")->default(0);
+            $table->string("collection")->default(0);
             $table->timestamps();
         });
     }

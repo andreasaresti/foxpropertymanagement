@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SuppliersInvoicesAnalysis;
+use App\Models\SupplierInvoicesWithRepairRequest;
 use Illuminate\Http\Request;
 
-class SuppliersInvoicesAnalysisController extends Controller
+class SupplierInvoicesWithRepairRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SuppliersInvoicesAnalysisController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SuppliersInvoicesAnalysis  $suppliersInvoicesAnalysis
+     * @param  \App\Models\SupplierInvoicesWithRepairRequest  $supplierInvoicesWithRepairRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(SuppliersInvoicesAnalysis $suppliersInvoicesAnalysis)
+    public function show(SupplierInvoicesWithRepairRequest $supplierInvoicesWithRepairRequest)
     {
         //
     }
@@ -52,10 +52,10 @@ class SuppliersInvoicesAnalysisController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SuppliersInvoicesAnalysis  $suppliersInvoicesAnalysis
+     * @param  \App\Models\SupplierInvoicesWithRepairRequest  $supplierInvoicesWithRepairRequest
      * @return \Illuminate\Http\Response
      */
-    public function edit(SuppliersInvoicesAnalysis $suppliersInvoicesAnalysis)
+    public function edit(SupplierInvoicesWithRepairRequest $supplierInvoicesWithRepairRequest)
     {
         //
     }
@@ -64,10 +64,10 @@ class SuppliersInvoicesAnalysisController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SuppliersInvoicesAnalysis  $suppliersInvoicesAnalysis
+     * @param  \App\Models\SupplierInvoicesWithRepairRequest  $supplierInvoicesWithRepairRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SuppliersInvoicesAnalysis $suppliersInvoicesAnalysis)
+    public function update(Request $request, SupplierInvoicesWithRepairRequest $supplierInvoicesWithRepairRequest)
     {
         //
     }
@@ -75,10 +75,10 @@ class SuppliersInvoicesAnalysisController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SuppliersInvoicesAnalysis  $suppliersInvoicesAnalysis
+     * @param  \App\Models\SupplierInvoicesWithRepairRequest  $supplierInvoicesWithRepairRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SuppliersInvoicesAnalysis $suppliersInvoicesAnalysis)
+    public function destroy(SupplierInvoicesWithRepairRequest $supplierInvoicesWithRepairRequest)
     {
         //
     }
