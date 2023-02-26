@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string("name");
             $table->string("ext_code")->nullable()->unique();
             $table->unsignedBigInteger("charge_rule_id")->nullable();
-            $table->unsignedBigInteger("building_id");
             $table->unsignedBigInteger("fund_id");
             $table->unsignedBigInteger("unit_id");
             $table->unsignedBigInteger("resident_id");
@@ -26,7 +25,6 @@ return new class extends Migration
             $table->string("charge_type");
             $table->timestamps();
             $table->foreign('charge_rule_id')->references('id')->on('charge_rules');
-            $table->foreign('building_id')->references('id')->on('buildings');
             $table->foreign('fund_id')->references('id')->on('funds');
             $table->foreign('unit_id')->references('id')->on('units');
             $table->foreign('resident_id')->references('id')->on('residents');
