@@ -4,29 +4,26 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Hasmany;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Panel;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class ChargeRule extends Resource
+class Charge extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\ChargeRule>
+     * @var class-string<\App\Models\Charge>
      */
-    public static $model = \App\Models\ChargeRules::class;
+    public static $model = \App\Models\Charges::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -34,7 +31,7 @@ class ChargeRule extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id',
     ];
 
     /**
@@ -46,22 +43,17 @@ class ChargeRule extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            Panel::make("Chart Rules", [
-                ID::make()->sortable(),
-                Text::make("Name", "name")->sortable(),
-                Text::make("Ext Code", "ext_code")->creationRules('unique:charge_rules,ext_code')->nullable()->rules("required"),
-                BelongsTo::make("Fund", "Fund", \App\Nova\Fund::class)->showCreateRelationButton(),
-                Date::make("Start Date", "start_date"),
-                Number::make("Recurrence Number", "recurrence_number")->default(1),
-                Number::make("Cycles Number", "cycles_number")->default(1)
-            ]),
-            Panel::make('Subs',[               
-                HasMany::make('ChargeRuleExpenseCategory'),
-                HasMany::make("ChargeRuleUnitPercentage")
-            ]),
+            ID::make()->sortable(),
+            Text::make("Name"),
+            Text::make("Ext Code", "ext_code"),
+            BelongsTo::make("Charge Rule", "ChargeRule", ChargeRule::class)->searchable(),
+            BelongsTo::make("Fund", "Fund", Fund::class),
+            BelongsTo::make("Unit", "Unit", Unit::class),
+            BelongsTo::make("Resident", "Resident", Resident::class),
+            Date::make("charge_date"),
+            Text::make("charge_type")
         ];
     }
-
     /**
      * Get the cards available for the request.
      *

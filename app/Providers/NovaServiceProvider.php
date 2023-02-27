@@ -16,6 +16,7 @@ use App\Nova\EmailType;
 use App\Nova\ChargeRule;
 use App\Nova\ChargeRuleUnitPercentage;
 use App\Nova\ChargeRuleExpenseCategory;
+use App\Nova\Charge;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main;
@@ -49,6 +50,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ])->icon('document-text')->collapsable(),
 
                 MenuSection::make('Others', [
+                    MenuItem::resource(Charge::class),
                     MenuItem::resource(JobCategory::class),
                     MenuItem::resource(EmailTemplate::class),
                     MenuItem::resource(EmailType::class),
