@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Webparking\BelongsToDependency\BelongsToDependency;
 
 class Charge extends Resource
 {
@@ -23,7 +24,7 @@ class Charge extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -49,7 +50,7 @@ class Charge extends Resource
             BelongsTo::make("Charge Rule", "ChargeRule", ChargeRule::class)->searchable(),
             BelongsTo::make("Fund", "Fund", Fund::class),
             BelongsTo::make("Unit", "Unit", Unit::class),
-            BelongsTo::make("Resident", "Resident", Resident::class),
+            BelongsToDependency::make("Resident")->dependsOn("Fund", "fund_id"),
             Date::make("charge_date"),
             Text::make("charge_type")
         ];
